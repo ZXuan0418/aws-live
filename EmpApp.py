@@ -100,12 +100,12 @@ def UpdateEmp():
         db_conn.commit()
         emp_name = "" + first_name + " " + last_name
         # Uplaod image file in S3 #
-        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+        emp_image_file_name_in_s3 = "emp-id-1" + str(emp_id) + "_image_file"
         s3 = boto3.resource('s3')
 
         try:
             print("Data updated in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=emp-id-1_image_file, Body=emp_image_file)
+            s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
 
