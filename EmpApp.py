@@ -93,11 +93,17 @@ def UpdateEmp():
     location = request.form['location']
     emp_image_file = request.files['emp_image_file'] 
 
-    update_sql = "UPDATE INTO employee SET first_name = %s, last_name = %s, pri_skill = %s, location = %s WHERE emp_id = %s"
+    update_sql_first_name = "UPDATE INTO employee SET first_name = %s WHERE emp_id = %s"
+    update_sql_last_name = "UPDATE INTO employee SET last_name = %s WHERE emp_id = %s"
+    update_sql_pri_skill = "UPDATE INTO employee SET pri_skill = %s WHERE emp_id = %s"
+    update_sql_location = "UPDATE INTO employee SET location = %s WHERE emp_id = %s"
     cursor = db_conn.cursor()
     
     try:
-        cursor.execute(update_sql, (first_name, last_name, pri_skill, location, emp_id))
+        cursor.execute(update_sql_first_name, (first_name, emp_id))
+        cursor.execute(update_sql_last_name, (last_name, emp_id))
+        cursor.execute(update_sql_pri_skill, (pri_skill, emp_id))
+        cursor.execute(update_sql_location, (location, emp_id))
         db_conn.commit()
         emp_name = "" + first_name + " " + last_name
         # Uplaod image file in S3 #
