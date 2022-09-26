@@ -85,8 +85,6 @@ def AddEmp():
 def UpdateEmp():
     emp_id = request.form['emp_id']
 
-    get_sql = "SELECT * FROM employee WHERE emp_id = %s"
-
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     pri_skill = request.form['pri_skill']
@@ -97,10 +95,10 @@ def UpdateEmp():
     update_sql_last_name = "UPDATE INTO employee SET last_name = %s WHERE emp_id = %s"
     update_sql_pri_skill = "UPDATE INTO employee SET pri_skill = %s WHERE emp_id = %s"
     update_sql_location = "UPDATE INTO employee SET location = %s WHERE emp_id = %s"
-    val_first_name = (first_name, get_sql)
-    val_last_name = (last_name, get_sql)
-    val_pri_skill = (pri_skill, get_sql)
-    val_location = (location, get_sql)
+    val_first_name = (first_name, emp_id)
+    val_last_name = (last_name, emp_id)
+    val_pri_skill = (pri_skill, emp_id)
+    val_location = (location, emp_id)
     cursor = db_conn.cursor()
     
     try:
