@@ -97,10 +97,10 @@ def UpdateEmp():
     update_sql_last_name = "UPDATE INTO employee SET last_name = %s WHERE emp_id = %s"
     update_sql_pri_skill = "UPDATE INTO employee SET pri_skill = %s WHERE emp_id = %s"
     update_sql_location = "UPDATE INTO employee SET location = %s WHERE emp_id = %s"
-    val_first_name = (first_name, emp_id)
-    val_last_name = (last_name, emp_id)
-    val_pri_skill = (pri_skill, emp_id)
-    val_location = (location, emp_id)
+    val_first_name = (first_name, get_sql)
+    val_last_name = (last_name, get_sql)
+    val_pri_skill = (pri_skill, get_sql)
+    val_location = (location, get_sql)
     cursor = db_conn.cursor()
     
     try:
