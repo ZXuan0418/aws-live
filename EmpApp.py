@@ -23,7 +23,7 @@ table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddEmp.html')
+    return render_template('UpdateEmp.html')
 
 
 @app.route("/about", methods=['POST'])
@@ -105,6 +105,9 @@ def UpdateEmp():
 
         try:
             print("Data updated in MySQL RDS... uploading image to S3...")
+            
+            s3.Object(custombucket, emp_image_file_name_in_s3).delete()
+            
             s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
